@@ -1,6 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
-const { Diets } = require("../db");
+const { Diet } = require("../db");
 const { API_KEY, API_URL, ADD_REC_INFO } = process.env;
 
 const dietsToDB = async () => {
@@ -11,18 +11,24 @@ const dietsToDB = async () => {
       .then((data) => data.results)
       .then((results) => results.flatMap((r) => r.diets));
       
-    console.log(dietsRaw);
+    // console.log(dietsRaw);
 
     const setDiets = new Set(dietsRaw);
 
-    console.log(setDiets);
+    // console.log(setDiets);
     const diets = [...setDiets, 'vegetarian'];
 
-    console.log(diets);
+    // console.log(diets);
+    const dietsSend = [];
+    for(let diet of diets){
+      dietsSend.push({name: diet});
+    }
 
-    Diets.bulkCreate(diets);
+    console.log(dietsSend);
+
+    await Diet.bulkCreate(dietsSend);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 

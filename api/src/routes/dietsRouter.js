@@ -1,14 +1,18 @@
 const { Router } = require("express");
 const getAllDiets = require("../controllers/getAllDiets");
 
-
 const dietsRouter = Router();
 
-dietsRouter.get('/', getAllDiets);
+dietsRouter.get(
+  "/",
+  (req, res) => {
+    res.send("Obtiene todos los tipos de dietas existentes.");
+  }
+
+  //   getAllDiets
+);
 
 module.exports = dietsRouter;
-
-
 
 // 📍 GET | /diets
 // Obtiene un arreglo con todos los tipos de dietas existentes.
