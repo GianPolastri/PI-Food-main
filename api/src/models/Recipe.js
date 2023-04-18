@@ -27,8 +27,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     stepByStep: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.ARRAY(DataTypes.JSONB),
     }
   });
 };
