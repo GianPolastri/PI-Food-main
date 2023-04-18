@@ -1,11 +1,9 @@
 const { Router } = require("express");
+const getRecipeById = require('../controllers/getRecipeById')
 
 const recipesRouter = Router();
 
-recipesRouter.get("/:idRecipe", (req, res) => {
-  const { idRecipe } = req.params;
-  res.send(`NIY: Esta ruta traera una receta especifica por id. (${idRecipe})`);
-});
+recipesRouter.get("/:idRecipe", getRecipeById);
 
 recipesRouter.get("/", (req, res) => {
   const { name } = req.query;
