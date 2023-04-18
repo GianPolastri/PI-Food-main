@@ -27,6 +27,6 @@ const recipesToDB = async () => {
   }
 };
 
-recipesToDB();
+// recipesToDB();
 
 module.exports = recipesToDB;

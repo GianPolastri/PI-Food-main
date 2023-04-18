@@ -32,4 +32,6 @@ const dietsToDB = async () => {
   }
 };
 
-dietsToDB();
+// dietsToDB();
+
+module.exports = dietsToDB;

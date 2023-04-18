@@ -1,7 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
-const {DB_USER, DB_HOST_, DB_PASSWORD} = process.env;
-const dietsToDB = require('./dietsToDB');
+const {DB_USER, DB_HOST, DB_PASSWORD} = process.env;
+const { Diet } = require('../db');
 
 
 // (req, res) => {
@@ -12,12 +12,13 @@ const dietsToDB = require('./dietsToDB');
 
 module.exports = async (req, res) => {
     try {
-        dietsToDB();
-        const diets = await axios.get(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST_}/food/diets`);
+        // await dietsToDB();
+        const diets = await Diet.findAll();
+        console.log(diets);
         res.status(200).json(diets);
     } catch (error) {
         res.status(400).json({error: error.message});
-    }
-    
+    }    
 }
 
+// await axios.get(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`);
