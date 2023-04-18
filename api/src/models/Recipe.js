@@ -34,6 +34,8 @@ module.exports = (sequelize) => {
 
 
 
+
+
 // ID. *
 // Nombre. *
 // Imagen. *
