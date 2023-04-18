@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const { API_URL, API_KEY, ADD_REC_INFO } = process.env;
-const { Recipes } = require("../db");
+const { Recipe } = require("../db");
 
 const recipesToDB = async () => {
   try {
@@ -13,7 +13,6 @@ const recipesToDB = async () => {
     let recetasToDB = await recetas.map((rec) => {
         const steps = rec.analyzedInstructions && rec.analyzedInstructions[0];
       return {
-        id: rec.id,
         name: rec.title,
         imagen: rec.image,
         resume: rec.summary,
@@ -21,8 +20,8 @@ const recipesToDB = async () => {
         stepByStep: steps && steps.steps,
       };
     });
-    console.log(recetasToDB);
-    Recipes.bulkCreate(recetasToDB);
+    // console.log(recetasToDB);
+    Recipe.bulkCreate(recetasToDB);
   } catch (error) {
     console.log(error);
   }

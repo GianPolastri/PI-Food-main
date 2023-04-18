@@ -5,7 +5,7 @@ const recipesToDB = require('./recipesToDB')
 
 module.exports = async (req, res) => {
   const { idRecipe } = req.params;
-  await recipesToDB();
+  // await recipesToDB();
   try {
     let recipes = await axios
       .get(`${API_URL}?apiKey=${API_KEY}${ADD_REC_INFO}`)
@@ -14,8 +14,20 @@ module.exports = async (req, res) => {
 
     const recipe = recipes.filter((receta) => receta.id == idRecipe);
 
-    console.log(recipe);    
-    res.status(200).json(recipe);
+    const objRecipe = recipe[0];
+
+    const steps = objRecipe.analyzedInstructions && objRecipe.analyzedInstructions[0];
+    const recipeSend = {
+      id: objRecipe.id,
+      name: objRecipe.title,
+      imagen: objRecipe.image,
+      resume: objRecipe.summary,
+      healthScore: objRecipe.healthScore,
+      stepByStep: steps && steps.steps,
+    };
+
+  res.status(200).json(recipeSend);
+  
   } catch (error) {
     console.log(error)
     res.status(400).json({ error: error.message });
