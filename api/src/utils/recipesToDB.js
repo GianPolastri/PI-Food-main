@@ -6,18 +6,18 @@ const { Recipe } = require("../db");
 const recipesToDB = async () => {
   try {
     const recetas = await axios
-      .get(`${API_URL}/complexSearch?apiKey=${API_KEY}&number=100${ADD_REC_INFO}`)
+      .get(`${API_URL}/complexSearch?apiKey=${API_KEY}&number=100&${ADD_REC_INFO}`)
       .then((response) => response.data)
       .then((data) => data.results);
     // console.log(recetas);
     let recetasToDB = await recetas.map((rec) => {
         const steps = rec.analyzedInstructions && rec.analyzedInstructions[0];
       return {
-        name: rec.title,
-        imagen: rec.image,
-        resume: rec.summary,
+        title: rec.title,
+        image: rec.image,
+        summary: rec.summary,
         healthScore: rec.healthScore,
-        stepByStep: steps && steps.steps,
+        stpes: steps && steps.steps,
         created: false,
       };
     });

@@ -9,14 +9,14 @@ module.exports = (sequelize) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    imagen: {
+    image: {
       type: DataTypes.STRING,
     },
-    resume: {
+    summary: {
       type: DataTypes.TEXT,
       allowNull: false
     },
@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    stepByStep: {
+    steps: {
       type: DataTypes.ARRAY(DataTypes.JSONB),
     },
     created:{
