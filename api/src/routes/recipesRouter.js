@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const getRecipeById = require('../controllers/getRecipeById')
+const getRecipeById = require('../handlers/getRecipeById')
 
 const recipesRouter = Router();
 

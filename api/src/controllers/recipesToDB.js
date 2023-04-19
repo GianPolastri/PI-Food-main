@@ -18,6 +18,7 @@ const recipesToDB = async () => {
         resume: rec.summary,
         healthScore: rec.healthScore,
         stepByStep: steps && steps.steps,
+        created: false,
       };
     });
     // console.log(recetasToDB);

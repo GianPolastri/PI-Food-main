@@ -22,12 +22,14 @@ module.exports = (sequelize) => {
     },
     healthScore: {
       type: DataTypes.INTEGER,
-      min: 1,
-      max: 10,
       allowNull: false
     },
     stepByStep: {
       type: DataTypes.ARRAY(DataTypes.JSONB),
+    },
+    created:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     }
   });
 };

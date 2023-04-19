@@ -1,7 +1,8 @@
 const axios = require("axios");
 require("dotenv").config();
 const { API_URL, API_KEY, ADD_REC_INFO } = process.env;
-const recipesToDB = require('./recipesToDB')
+const recipesToDB = require('../controllers/recipesToDB');
+// const getById = require('../controllers/getById');
 
 module.exports = async (req, res) => {
   const { idRecipe } = req.params;
@@ -24,6 +25,7 @@ module.exports = async (req, res) => {
       resume: objRecipe.summary,
       healthScore: objRecipe.healthScore,
       stepByStep: steps && steps.steps,
+      created: false,
     };
 
   res.status(200).json(recipeSend);
