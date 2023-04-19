@@ -1,6 +1,6 @@
 
 const { Diet } = require('../db');
-const dietsToDB = require('../controllers/dietsToDB');
+const dietsToDB = require('../utils/dietsToDB');
 
 // (req, res) => {
 //     res.send('Obtiene todos los tipos de dietas existentes.');

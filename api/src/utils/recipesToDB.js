@@ -6,7 +6,7 @@ const { Recipe } = require("../db");
 const recipesToDB = async () => {
   try {
     const recetas = await axios
-      .get(`${API_URL}?apiKey=${API_KEY}&number=100${ADD_REC_INFO}`)
+      .get(`${API_URL}/complexSearch?apiKey=${API_KEY}&number=100${ADD_REC_INFO}`)
       .then((response) => response.data)
       .then((data) => data.results);
     // console.log(recetas);
