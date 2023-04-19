@@ -1,11 +1,8 @@
-const axios = require("axios");
-require("dotenv").config();
-const { API_URL, API_KEY, ADD_REC_INFO } = process.env;
 const recipesToDB = require("../utils/recipesToDB");
 const getByID = require("../controllers/getByID");
 
 module.exports = async (req, res) => {
-  // await recipesToDB();
+  await recipesToDB();
   const { idRecipe } = req.params;
   const source = isNaN(idRecipe) ? "db" : "api";
   try {
