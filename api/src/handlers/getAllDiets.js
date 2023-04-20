@@ -10,7 +10,7 @@ const dietsToDB = require('../utils/dietsToDB');
 
 module.exports = async (req, res) => {
     try {
-        await dietsToDB();
+        // await dietsToDB();
         const diets = await Diet.findAll();
         // console.log(diets);
         res.status(200).json(diets);

@@ -14,19 +14,21 @@ const getById = async (id, source) => {
           .get(`${API_URL}/${id}/information?apiKey=${API_KEY}&&${ADD_REC_INFO}`)
           .then((response) => response.data);
 
-  //   console.log(recipe);
+    // console.log(recipe);
 
   if (source === "db") {
     rawRecipe.push(recipe);
     result = rawRecipe;
-    console.log(result);
   } else {
     rawRecipe.push(recipe);
-
+    
     result = recipeCleaner(rawRecipe);
+    console.log(result);
   }
 
   return result;
 };
+
+
 
 module.exports = getById;
