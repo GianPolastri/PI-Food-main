@@ -12,9 +12,7 @@ const getByName = async (name) => {
         [Op.substring]: `${name}`,
       },
     },
-  })
-
-
+  });
 
   const rawApiRecipes = await axios
     .get(
@@ -28,23 +26,24 @@ const getByName = async (name) => {
   );
 
   const cleanApiRecipes = recipeCleaner(filtredApiRecipes);
-
   const setApiRecipes = new Set(cleanApiRecipes);
 
-  
   const cleanDbRecipes = recipeCleaner(dbRecipes);
-
   const setDbRecipes = new Set(cleanDbRecipes);
-  
-  // console.log(setDbRecipes);
-//   console.log(cleanDbRecipes);
-  // const filtredDbRecipes = dbRecipes.filter(rec => rec.dataValues);
-  // const filtredDbRecipes = dbRecipes.dataValue
-  // console.log(filtredDbRecipes);
 
-  const recipesSet  = new Set([...setDbRecipes, ...setApiRecipes])
+  const recipesSet = new Set([...setDbRecipes]);
+  recipesSet.forEach((rec) => {
+    [...setApiRecipes].map((r) => {
+      if (r.title !== rec.title) {
+        recipesSet.add(r);
+      }
+    });
+  });
 
-  console.log(recipesSet);
+  console.log([...recipesSet]);
+  return [...recipesSet];
 };
 
-getByName("Soup");
+
+
+module.exports = getByName;

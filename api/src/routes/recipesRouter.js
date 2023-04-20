@@ -1,16 +1,13 @@
 const { Router } = require("express");
-const getRecipeById = require('../handlers/getRecipeById')
+const getRecipeById = require('../handlers/getRecipeById');
+const getRecipeByName = require('../handlers/getRecipesByName');
+const getRecipesByName = require("../handlers/getRecipesByName");
 
 const recipesRouter = Router();
 
 recipesRouter.get("/:idRecipe", getRecipeById);
 
-recipesRouter.get("/", (req, res) => {
-  const { name } = req.query;
-  res.send(
-    `NIY: Esta ruta traera todas las recetas que contengan el nombre solicitado. (${name})`
-  );
-});
+recipesRouter.get("/", getRecipesByName);
 
 recipesRouter.post("/", (req, res) => {
   res.send(`NIY: Esta ruta crea una recipe con los datos enviados por query.`);
