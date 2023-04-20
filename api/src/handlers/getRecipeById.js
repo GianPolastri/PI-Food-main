@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
   const source = isNaN(idRecipe) ? "db" : "api";
   try {
     const recipeSend = await getByID(idRecipe, source);
-
     res.status(200).json(recipeSend[0]);
   } catch (error) {
     console.log(error);

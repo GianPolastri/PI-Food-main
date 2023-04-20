@@ -6,6 +6,7 @@ const recipeCleaner = require("../utils/recipeCleaner");
 
 const getById = async (id, source) => {
   const rawRecipe = [];
+  console.log(id);
   let result;
   const recipe =
     source === "db"
@@ -23,7 +24,7 @@ const getById = async (id, source) => {
     rawRecipe.push(recipe);
     
     result = recipeCleaner(rawRecipe);
-    console.log(result);
+    // console.log(result);
   }
 
   return result;
